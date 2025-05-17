@@ -1,1 +1,203 @@
 /* You can add global styles to this file, and also import other style files */
+$primary-color: #38015f;
+$seconday-color: #939393;
+
+.home-background {
+  background: url("assets/login.png");
+  background-repeat: no-repeat;
+
+  background-position: center;
+}
+
+.table {
+  border-radius: 20px;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.menu-card {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-card:hover {
+  transform: scale(1.05);
+}
+
+.page-item.active .page-link:active {
+  background-color: $primary-color !important;
+}
+
+.form-check-input:checked {
+  background-color: $primary-color !important;
+  border-color: $seconday-color;
+}
+
+.split-line {
+  height: 2px;
+  background-color: $primary-color;
+  margin: 20px 20px 20px 20px;
+}
+
+.snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: $primary-color;
+  color: #fff;
+  text-align: center;
+  border-radius: 20px;
+  padding: 12px;
+  position: fixed;
+  z-index: 9999;
+  bottom: 30px;
+  left: 50%;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.snackbar.show {
+  visibility: visible;
+  animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    bottom: 20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 20px;
+    opacity: 0;
+  }
+}
+
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full,
+.mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-full {
+  background: $primary-color !important;
+}
+
+//.page-link{
+// background-color: $seconday-color !important;
+//}
+/* Importing Bootstrap SCSS file. */
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; /* Opcional, ajusta según necesidad */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Centrado vertical en toda la pantalla */
+}
+
+.custom-card {
+  width: 120px;
+  height: 120px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 60px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.items-per-page {
+  margin-left: 15px;
+}
+
+.full-width {
+  width: 45%;
+  margin-left: 10px; /* Espacio entre campos */
+  max-height: 20%;
+}
+
+.mat-cardModal {
+  max-width: 100% !important;
+  margin: auto;
+  padding: 10px;
+}
+
+.buttonModal {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.petcontainer {
+  margin: 10%;
+  max-height: 100vh;
+  max-width: 90vw !important; /* Ajusta el ancho a un máximo del 90% de la ventana */
+  min-width: 900px; /* Tamaño predeterminado */
+}
+
+.petfull-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.custom-snackbar {
+  background-color: #38015f !important;
+  color: white !important;
+  font-size: 16px;
+  text-align: center;
+}
+
+.mat-mdc-simple-snack-bar {
+  background-color: $primary-color !important;
+  color: white !important;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.mat-mdc-snackbar-surface {
+  background-color: $primary-color !important;
+  color: white !important;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 40px;
+}
+
+.mat-mdc-dialog-surface {
+  border-radius: 40px;
+  max-width: 120% !important;
+  min-width: 120% !important;
+  overflow-x: hidden;
+  scrollbar-width: thin; /* Para navegadores como Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0) transparent; /* Color del scroll y del fondo */
+}
