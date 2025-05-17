@@ -1,24 +1,31 @@
-<div class="login-container">
+<mat-card class="login-card">
   <h2>Iniciar Sesión</h2>
-  <form (submit)="login()">
-    <label for="usuario">Usuario:</label>
-    <input
-      type="text"
-      id="usuario"
-      [(ngModel)]="usuario"
-      name="usuario"
-      required
-    />
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <input matInput formControlName="user" required placeholder="Usuario" />
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        Usuario requerido
+      </mat-error>
+    </mat-form-field>
 
-    <label for="password">Contraseña:</label>
-    <input
-      type="password"
-      id="password"
-      [(ngModel)]="password"
-      name="password"
-      required
-    />
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        formControlName="password"
+        type="password"
+        required
+        placeholder="Contraseña"
+      />
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        Contraseña Requerida
+      </mat-error>
+    </mat-form-field>
 
-    <button type="submit">Ingresar</button>
+    <button mat-raised-button color="active" type="submit" id="liveToastBtn">
+      Ingresar
+    </button>
   </form>
-</div>
+</mat-card>
+
+<!-- Contenedor de Snackbar -->
+<div id="snackbar" class="snackbar">{{ errorMessage }}</div>

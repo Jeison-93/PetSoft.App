@@ -16,7 +16,7 @@ export const STORAGE_LS_AUX = 'AUX';
 export const STORAGE_LS_VET = 'VET';
 export const STORAGE_LS_CLI = 'CLI';
 
-export const STORAGE_SECRET_KEY  =  CryptoJS.enc.Utf8.parse('CL4V3S3G2R4');
+export const STORAGE_SECRET_KEY = CryptoJS.enc.Utf8.parse('CL4V3S3G2R4');
 export const STORAGE_SECRET_IV = CryptoJS.enc.Utf8.parse('S3C2R1T7K3Y'); // IV de 16 bytes
 
 ///Constante de los estados de las citas AGENDADO
@@ -25,8 +25,3 @@ export const STATE_SERVICE_AGD = 'AGD';
 export const STATE_SERVICE_CONF = 'CONF';
 ///Constante de los estados de las citas ATENDIDO
 export const STATE_SERVICE_ATEN = 'ATEN';
-
-
-
-
-
