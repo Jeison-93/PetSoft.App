@@ -1,1 +1,58 @@
-<p>menu works!</p>
+<mat-toolbar>
+  <button mat-icon-button style="color: white" (click)="sidenav.toggle()">
+    <mat-icon> menu </mat-icon>
+  </button>
+  <span>PetSoft</span>
+  <button mat-button class="mat-logout" (click)="logOut()">
+    <mat-icon>logout</mat-icon>
+    <span>Salir</span>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav
+    class="mat-elevation-z8"
+    #sidenav="matSidenav"
+    mode="side"
+    opened
+  >
+    <img class="avatar mat-elevation-z8" src="assets/user-100.png" alt="" />
+    <h4 class="name">{{ name }}</h4>
+    <p class="designation">{{ role }}</p>
+
+    <mat-divider></mat-divider>
+
+    <span>Perfiles</span>
+
+    <button mat-button class="menu-button" *ngIf="isAdmin">
+      <img src="assets/user-24.png " />
+      <span><a [routerLink]="['menulist/user']">Usuarios</a></span>
+    </button>
+    <button mat-button class="menu-button">
+      <img src="assets/client-24.png " />
+      <span><a [routerLink]="['menulist/clientBoard']"> Clientes</a></span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <span>Servicios</span>
+
+    <button mat-button class="menu-button">
+      <img src="assets/calendar-24.png " />
+      <span><a [routerLink]="['menulist/servicesBoard']">Administrar</a></span>
+    </button>
+
+    <button mat-button class="menu-button">
+      <img src="assets/evento-24.png " />
+      <span><a [routerLink]="['menulist/servicesManagement']">Citas</a></span>
+    </button>
+
+    <mat-divider></mat-divider>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

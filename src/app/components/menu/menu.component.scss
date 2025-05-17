@@ -1,0 +1,105 @@
+$primary-color: #38015f;
+$seconday-color: #939393;
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+
+mat-toolbar {
+  background: $primary-color;
+  color: white;
+}
+
+mat-sidenav {
+  margin: 16px;
+  width: 210px;
+  border-right: none;
+  background: $primary-color;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  scrollbar-width: thin; /* Para navegadores como Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0) transparent; /* Color del scroll y del fondo */
+
+  /* Estilo para navegadores basados en WebKit (Chrome, Edge, Safari) */
+  &::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* Fondo transparente */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1); /* Color de la barra */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4); /* Oscurece al pasar el mouse */
+  }
+}
+
+.avatar {
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 8px;
+  font-weight: normal;
+}
+
+.designation {
+  margin-top: 1px;
+  font-size: 0.8rem;
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  mat-icon,
+  span,
+  a {
+    margin-right: 8px;
+    color: white;
+  }
+}
+
+.content {
+  height: calc(100vh - 101px);
+  border-radius: 10px;
+  margin: 18px;
+  margin-left: 32px;
+  overflow-y: auto;
+  color: $seconday-color;
+  flex-direction: column;
+}
+
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: white;
+}
+
+mat-sidenav-content {
+  height: calc(100vh - 65px);
+}
+
+a {
+  text-decoration: none;
+}
+
+.mat-logout {
+  align-content: end;
+}
