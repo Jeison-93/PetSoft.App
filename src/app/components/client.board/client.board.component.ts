@@ -13,6 +13,7 @@ import { EncryptionService } from '../../services/encryption.service';
 import { GenericListService } from '../../services/generic.services/genericList.services';
 import { ClientCreateComponent } from '../client.create/client.create.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PetCreateComponent } from '../pet.create/pet.create.component';
 
 @Component({
   selector: 'app-client.board',
@@ -130,23 +131,22 @@ export class ClientBoardComponent {
     );
     this.localStorageServices.setLocalData(STORAGE_LS_USER, encryptedPatient);
 
-    /* const dialogRef = this.dialog.open(PetCreateComponent, {
+    const dialogRef = this.dialog.open(PetCreateComponent, {
       width: '95%',
       height: '90%',
       data: {
-        title: "Mascotas",
+        title: 'Mascotas',
         client: row,
-        isEdit: false
+        isEdit: false,
       },
-      disableClose: false
+      disableClose: false,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.getData();
-      } 
+      }
     });
-*/
   }
 
   changeState(row: any) {
