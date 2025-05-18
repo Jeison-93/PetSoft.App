@@ -3,7 +3,8 @@
     <mat-icon> menu </mat-icon>
   </button>
   <span>PetSoft</span>
-  <button mat-button class="mat-logout" (click)="logOut()">
+  <span class="mat-logout"></span>
+  <button mat-button style="color: white" (click)="logOut()">
     <mat-icon>logout</mat-icon>
     <span>Salir</span>
   </button>
@@ -26,7 +27,7 @@
 
     <button mat-button class="menu-button" *ngIf="isAdmin">
       <img src="assets/user-24.png " />
-      <span><a [routerLink]="['menulist/userboard']">Usuarios</a></span>
+      <span><a [routerLink]="['menulist/userboard']"> Usuarios</a></span>
     </button>
     <button mat-button class="menu-button">
       <img src="assets/client-24.png " />
@@ -39,12 +40,12 @@
 
     <button mat-button class="menu-button">
       <img src="assets/calendar-24.png " />
-      <span><a [routerLink]="['menulist/servicesBoard']">Administrar</a></span>
+      <span><a [routerLink]="['menulist/servicesBoard']"> Administrar</a></span>
     </button>
 
     <button mat-button class="menu-button">
       <img src="assets/evento-24.png " />
-      <span><a [routerLink]="['menulist/servicesManagement']">Citas</a></span>
+      <span><a [routerLink]="['menulist/servicesManagement']"> Citas</a></span>
     </button>
 
     <mat-divider></mat-divider>
