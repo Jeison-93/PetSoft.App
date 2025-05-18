@@ -16,9 +16,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTimepickerModule } from '@angular/material/timepicker';
+import { ClientCreateComponent } from './client.create/client.create.component';
+import { ClientBoardComponent } from './client.board/client.board.component';
 
 @NgModule({
-  declarations: [UserCreateComponent],
+  declarations: [UserCreateComponent, ClientCreateComponent, ClientBoardComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
