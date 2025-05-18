@@ -21,7 +21,7 @@ export class UserServices {
   // Método para obtener todos los usuarios
   GetAllUser() {
     return this.http
-      .get<any>(`${this.configService.configValue.urlApiUser}GetAllUsers`)
+      .get<any>(`${this.configService.configValue.urlApiUser}GetAll`)
       .pipe(
         retry(0),
         catchError(this.handleError),
