@@ -19,9 +19,12 @@ import { MatTimepickerModule } from '@angular/material/timepicker';
 import { ClientCreateComponent } from './client.create/client.create.component';
 import { ClientBoardComponent } from './client.board/client.board.component';
 import { PetCreateComponent } from './pet.create/pet.create.component';
+import { ServicesBoardComponent } from './services.board/services.board.component';
+import { ServicesCreateComponent } from './services.create/services.create.component';
+import { ServicesManagementComponent } from './services.management/services.management.component';
 
 @NgModule({
-  declarations: [UserCreateComponent, ClientCreateComponent, ClientBoardComponent, PetCreateComponent],
+  declarations: [UserCreateComponent, ClientCreateComponent, ClientBoardComponent, PetCreateComponent, ServicesBoardComponent, ServicesCreateComponent, ServicesManagementComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
