@@ -1,0 +1,69 @@
+<mat-card class="mat-cardModal">
+    <mat-card-title style="margin: 15px;">{{data.title}}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form">
+        
+        <mat-form-field class="full-width" *ngIf="!data.isEdit">
+            <mat-label>Clientes</mat-label>
+            <mat-select formControlName="client" (selectionChange)="onClientChange($event)">
+              <mat-option *ngFor="let item of clients" [value]="item.code" >
+                {{ item.description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+        <mat-form-field class="full-width" *ngIf="!data.isEdit">
+            <mat-label>Mascotas</mat-label>
+            <mat-select formControlName="idpet">
+              <mat-option *ngFor="let item of pets" [value]="item.id">
+                {{ item.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field class="full-width" *ngIf="!data.isEdit">
+              <mat-label>Servicio</mat-label>
+              <mat-select formControlName="serviceType">
+                <mat-option *ngFor="let item of servicesType" [value]="item.code">
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      
+            <mat-form-field class="full-width">
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="serviceState">
+                <mat-option *ngFor="let item of servicesState" [value]="item.code">
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Fecha</mat-label>
+                <input matInput [matDatepicker]="datepicker" formControlName="dateService" >
+                <mat-datepicker #datepicker/>
+                <mat-datepicker-toggle [for]="datepicker" matSuffix/>
+              </mat-form-field>
+              
+              <mat-form-field class="full-width">
+                <mat-label>Hora</mat-label>
+                <input type="time" matInput
+                  formControlName="hourService" >
+                <mat-timepicker #timepicker/>
+                <mat-timepicker-toggle [for]="timepicker" matSuffix/>
+              </mat-form-field>
+
+        <mat-form-field class="full-width" *ngIf="!data.isEdit">
+            <mat-label>Valor</mat-label>
+            <input matInput type="number" formControlName="value" required>
+          </mat-form-field>
+  
+        <!-- Botón de Guardar -->
+        <button mat-raised-button color="primary" class="buttonModal" type="submit" [disabled]="form.invalid" (click)="save()">Guardar</button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  
