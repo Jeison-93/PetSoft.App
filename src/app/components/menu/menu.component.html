@@ -17,7 +17,8 @@
     mode="side"
     opened
   >
-    <img class="avatar mat-elevation-z8" src="assets/user-100.png" alt="" />
+    <img class="avatar mat-elevation-z8" [src]="imageUrl" alt="" id="avatar" />
+    <input type="file" id="imageFile" name="filename" (change)="onFileSelected($event)" accept=".png, .jpg, .jpeg" />
     <h4 class="name">{{ name }}</h4>
     <p class="designation">{{ role }}</p>
 
@@ -57,3 +58,18 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<script>
+  document.getElementById("imageFile").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    console.log("Selected file:");
+    console.log(file);
+    if (file) {
+      const img = document.getElementById("avatar");
+      img.src = URL.createObjectURL(file);
+      img.onload = function() {
+        URL.revokeObjectURL(img.src); // Free memory after image is loaded
+      };
+    }
+  });
+</script>
