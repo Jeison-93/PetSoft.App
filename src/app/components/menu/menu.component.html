@@ -58,18 +58,3 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<script>
-  document.getElementById("imageFile").addEventListener("change", function(event) {
-    const file = event.target.files[0];
-    console.log("Selected file:");
-    console.log(file);
-    if (file) {
-      const img = document.getElementById("avatar");
-      img.src = URL.createObjectURL(file);
-      img.onload = function() {
-        URL.revokeObjectURL(img.src); // Free memory after image is loaded
-      };
-    }
-  });
-</script>
