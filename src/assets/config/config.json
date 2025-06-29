@@ -5,5 +5,5 @@
   "urlApiUser": "https://localhost:7299/api/User/",
   "urlApiClient": "https://localhost:7299/api/Client/",
   "urlApiPet": "https://localhost:7299/api/Pet/",
-  "urlApiAppointments": "https://localhost:7299/api/ClientServices/"
+  "urlApiAppointments": "https://localhost:7299/api/Appointments/"
 }
