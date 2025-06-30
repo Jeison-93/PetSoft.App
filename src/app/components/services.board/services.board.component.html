@@ -5,9 +5,9 @@
       <form [formGroup]="form">
           <mat-form-field class="full-width">
               <mat-label>Clientes</mat-label>
-              <mat-select formControlName="client" (selectionChange)="onClientChange($event)">
-                <mat-option *ngFor="let item of clients" [value]="item.code" >
-                  {{ item.description }}
+              <mat-select formControlName="client" >
+                <mat-option *ngFor="let item of clients" [value]="item.id" >
+                  {{ item.documentNumber }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -15,8 +15,8 @@
           <mat-form-field class="full-width">
             <mat-label>Mascotas</mat-label>
             <mat-select formControlName="pet">
-              <mat-option *ngFor="let item of pets" [value]="item.id">
-                {{ item.name }}
+              <mat-option *ngFor="let item of pets" [value]="item.code">
+                {{ item.description }}
               </mat-option>
             </mat-select>
           </mat-form-field>

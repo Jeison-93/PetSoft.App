@@ -43,7 +43,7 @@ export class ServicesBoardComponent implements OnInit {
     public dialog: MatDialog, private encryptionService: EncryptionService )	{		
     this.form = this.fb.group({
       client:[''],
-      pet:[],
+      pet:[''],
       serviceType:[''],
       serviceState: ['']
     });
@@ -60,15 +60,15 @@ export class ServicesBoardComponent implements OnInit {
 
   onClientChange(event: MatSelectChange): void {
     const value = event.value;
-    this.pets =   Object.assign([], []);
-    this.dataSource =   Object.assign([], []);
+    this.pets = Object.assign([], []);
+    this.dataSource = Object.assign([], []);
     this.updatePagination();
     this.petsServices.GetAllPets(value).subscribe((res => {
       if(res.isSuccessful){
-        this.pets =   Object.assign([], [...res.result]);
+        this.pets = Object.assign([], [...res.result]);
       }
       else{
-        this.pets =   Object.assign([], []);
+        this.pets = Object.assign([], []);
       }
 
     })); 
@@ -80,6 +80,17 @@ export class ServicesBoardComponent implements OnInit {
     if(res.isSuccessful)
       {
         this.clients = Object.assign([], [...res.result]);
+      }
+      else {
+        this.responseMessage = res.isError ? res.errorMessage : res.message;
+        this.showSnackbar();
+      }
+    });
+
+    this.genericListServices.GetGenericTable('Species').subscribe((res)=>{
+      if(res.isSuccessful)
+      {
+        this.pets = Object.assign([], [...res.result]);
       }
       else {
         this.responseMessage = res.isError ? res.errorMessage : res.message;

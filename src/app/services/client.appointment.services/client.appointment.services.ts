@@ -21,7 +21,7 @@ export class ClientAppoitmentServices {
   GetAppointments(params: any): Observable<any> {
     return this.http
       .post<any>(
-        `${this.configService.configValue.urlApiAppointments}GetAppointments`,
+        `${this.configService.configValue.urlApiAppointments}Get`,
         params
       )
       .pipe(
@@ -103,7 +103,7 @@ export class ClientAppoitmentServices {
   GetAppointmentsByState(state: string) {
     return this.http
       .get<any>(
-        `${this.configService.configValue.urlApiAppointments}GetAppointmentsByState?state=${state}`
+        `${this.configService.configValue.urlApiAppointments}GetByState?state=${state}`
       )
       .pipe(
         retry(0),

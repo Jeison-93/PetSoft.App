@@ -36,9 +36,9 @@ export class ServicesCreateComponent {
       this.form = this.fb.group({
         id: [''],
         userSave: [''],
-        userUpdate: [''],
-        client: [''],
-        idpet: ['', Validators.required],
+        userUpdate: [1],
+        client: [1],
+        idPet: [1, Validators.required],
         serviceState: ['', Validators.required],
         serviceType: ['',Validators.required],
         dateService: ['',Validators.required],
@@ -82,6 +82,17 @@ export class ServicesCreateComponent {
           }
         });
 
+        this.genericListServices.GetGenericTable('Species').subscribe((res)=>{
+        if(res.isSuccessful)
+        {
+          this.pets = Object.assign([], [...res.result]);
+        }
+        else {
+          this.responseMessage = res.isError ? res.errorMessage : res.message;
+          this.showSnackbar();
+        }
+      });
+
       this.genericListServices.GetGenericTable('ServiceType').subscribe((res)=>{
         if(res.isSuccessful)
         {
@@ -124,7 +135,9 @@ export class ServicesCreateComponent {
     save(){
       if (this.form.valid) {
         this.form.patchValue({
-          dateService: ConvertDateFormat(this.form.value.dateService)
+          dateService: '30/03/2025',
+          hourService: '06:00 AM',
+          userSave: 1
         });
         if(this.data.isEdit){
           this.OnUpdate();

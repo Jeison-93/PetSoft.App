@@ -34,7 +34,7 @@ export class ClientServices {
   GetActiveClients() {
     return this.http
       .get<any>(
-        `${this.configService.configValue.urlApiClient}GetActiveClients`
+        `${this.configService.configValue.urlApiClient}GetAll`
       )
       .pipe(
         retry(0),
