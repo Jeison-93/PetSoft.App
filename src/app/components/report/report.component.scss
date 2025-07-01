@@ -1,0 +1,28 @@
+.report-container {
+  padding: 20px;
+  background: #f4f4f4;
+  border-radius: 12px;
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    label {
+      font-weight: bold;
+    }
+
+    input,
+    button {
+      padding: 6px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  }
+}

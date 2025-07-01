@@ -1,133 +1,230 @@
-  <!-- ENCABEZADO -->
-  <div  class="position-relative p-2 ms-2">
-      <h2>Agendar/Consultar Servicios</h2> 
-      
-      <form [formGroup]="form">
-          <mat-form-field class="full-width">
-              <mat-label>Clientes</mat-label>
-              <mat-select formControlName="client" (selectionChange)="onClientChange($event)">
-                <mat-option *ngFor="let item of clients" [value]="item.code" >
-                  {{ item.description }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-    
-          <mat-form-field class="full-width">
-            <mat-label>Mascotas</mat-label>
-            <mat-select formControlName="pet">
-              <mat-option *ngFor="let item of pets" [value]="item.id">
-                {{ item.name }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-      
-          <mat-form-field class="full-width">
-              <mat-label>Servicio</mat-label>
-              <mat-select formControlName="serviceType">
-                <mat-option *ngFor="let item of servicesType" [value]="item.code">
-                  {{ item.description }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-      
-            <mat-form-field class="full-width">
-              <mat-label>Estado</mat-label>
-              <mat-select formControlName="serviceState">
-                <mat-option *ngFor="let item of servicesState" [value]="item.code">
-                  {{ item.description }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-      
-        <div class="form-group p-2" >
-          <div class="row justify-content-center">
-              <div class="button-container" style="margin: 5px;">
-                  <button mat-raised-button color="primary" class="btn btn-primary" [disabled]="form.invalid" (click)="search()">Buscar</button>
+<!-- ENCABEZADO -->
+<div class="position-relative p-2 ms-2">
+  <h2>Agendar/Consultar Servicios</h2>
+
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Clientes</mat-label>
+      <mat-select
+        formControlName="IdClient"
+        (selectionChange)="onClientChange($event)"
+      >
+        <mat-option *ngFor="let item of clients" [value]="item.code">
+          {{ item.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Mascotas</mat-label>
+      <mat-select formControlName="Idpet">
+        <mat-option *ngFor="let item of pets" [value]="item.id">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Servicio</mat-label>
+      <mat-select formControlName="IdServices">
+        <mat-option *ngFor="let item of servicesType" [value]="item.code">
+          {{ item.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="IdState">
+        <mat-option *ngFor="let item of servicesState" [value]="item.code">
+          {{ item.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-group p-2">
+      <div class="row justify-content-center">
+        <div class="button-container" style="margin: 5px">
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn btn-primary"
+            [disabled]="form.invalid"
+            (click)="search()"
+          >
+            Buscar
+          </button>
+        </div>
+        <div class="button-container" style="margin: 5px">
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn btn-primary"
+            (click)="ResetValues()"
+          >
+            Llimpiar
+          </button>
+        </div>
+        <div class="button-container" style="margin: 5px">
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn btn-primary"
+            (click)="addAppointment()"
+          >
+            Crear cita
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- BOTONES -->
+
+  <!-- DATA GRID -->
+  <div class="position-relative p-1 ms-2">
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          <table
+            class="table table-sm table-responsive table-bordered table-striped table-hover"
+            style="overflow: auto; height: 310px"
+          >
+            <thead>
+              <tr
+                style="
+                  position: sticky;
+                  top: 0;
+                  background: #fff;
+                  text-align: center;
+                "
+              >
+                <th sortable="edit">Acciones</th>
+                <th
+                  class="col-auto"
+                  style="min-width: 200px"
+                  sortable="petName"
+                >
+                  Cliente
+                </th>
+                <th
+                  class="col-auto"
+                  style="min-width: 100px"
+                  sortable="petName"
+                >
+                  Mascota
+                </th>
+                <th
+                  class="col-auto"
+                  style="min-width: 250px"
+                  sortable="serviceTypeDescription"
+                >
+                  Servicio
+                </th>
+                <th
+                  class="col-auto"
+                  style="min-width: 100px"
+                  sortable="stateDescription"
+                >
+                  Estado
+                </th>
+                <th
+                  class="col-auto"
+                  style="min-width: 200px"
+                  sortable="dateServices"
+                >
+                  Fecha y hora
+                </th>
+                <th class="col-auto" style="min-width: 120px" sortable="value">
+                  Valor
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of paginatedData" style="width: 180px">
+                <td width="180px" style="text-align: center">
+                  <button
+                    type="button"
+                    style="border: none; background: transparent"
+                    (click)="editAppointment(item)"
+                  >
+                    <img src="assets/edit-24.png " />
+                  </button>
+                </td>
+                <td style="text-align: center">{{ item.clientName }}</td>
+                <td style="text-align: center">{{ item.petName }}</td>
+                <td style="text-align: center">
+                  {{ item.serviceTypeDescription }}
+                </td>
+                <td style="text-align: center">{{ item.stateDescription }}</td>
+                <td style="text-align: center">
+                  {{ item.dateService | date : "yyyy-MM-dd" }}
+                  {{ item.hourService }}
+                </td>
+                <td style="text-align: center">${{ item.value }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div
+            class="form-inline pull-right margin-bottom-basic"
+            *ngIf="paginatedData.length > 0"
+          >
+            <div class="form-group col-md-12 p-1">
+              <div class="col-md-12">
+                <label for="totalItems"
+                  ><b>Total registros: {{ dataSource.length }}</b></label
+                >
               </div>
-              <div class="button-container" style="margin: 5px;">
-                <button mat-raised-button color="primary" class="btn btn-primary" (click)="ResetValues()">Llimpiar</button>
-                
-              </div>
-              <div class="button-container" style="margin: 5px;">
-                  <button mat-raised-button color="primary" class="btn btn-primary" (click)="addAppointment()">Crear cita</button>
-                  
-                </div>
+            </div>
+
+            <div class="form-group items-per-page p-2">
+              <label for="itemsOnPageSelect">Items por página:</label>
+              <select
+                id="itemsOnPageSelect"
+                class="form-control input-sm"
+                [value]="itemsPerPage"
+                [(ngModel)]="itemsPerPage"
+                (ngModelChange)="onValueChange($event)"
+              >
+                <option>5</option>
+                <option>10</option>
+                <option>25</option>
+              </select>
+            </div>
+            <nav>
+              <ul class="pagination justify-content-center">
+                <li class="page-item" [class.disabled]="currentPage === 1">
+                  <button
+                    class="page-link"
+                    (click)="changePage(currentPage - 1)"
+                  >
+                    Anterior
+                  </button>
+                </li>
+                <li
+                  class="page-item"
+                  *ngFor="let page of totalPages"
+                  [class.active]="currentPage === page"
+                >
+                  <button class="page-link" (click)="changePage(page)">
+                    {{ page }}
+                  </button>
+                </li>
+                <li
+                  class="page-item"
+                  [class.disabled]="currentPage === totalPages.length"
+                >
+                  <button
+                    class="page-link"
+                    (click)="changePage(currentPage + 1)"
+                  >
+                    Siguiente
+                  </button>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
-        
-        
-        </form>
-    <!-- BOTONES -->
-    
-    <!-- DATA GRID -->
-      <div class="position-relative p-1 ms-2">
-      <div class="row">
-    
-        <div class="col-md-12">
-            <div>
-    
-                <table class="table  table-sm table-responsive table-bordered table-striped table-hover" style=" overflow: auto; height:310px;">
-                    <thead>
-                      <tr style="position: sticky; top: 0; background: #fff;text-align: center;">
-                      <th  sortable="edit">Acciones</th>
-                      <th class="col-auto" style="min-width: 200px;" sortable="petName">Cliente</th>
-                      <th class="col-auto" style="min-width: 100px;" sortable="petName">Mascota</th>
-                      <th class="col-auto" style="min-width: 250px;" sortable="serviceTypeDescription">Servicio</th>
-                      <th class="col-auto" style="min-width: 100px;" sortable="stateDescription">Estado</th>
-                      <th class="col-auto" style="min-width: 200px;" sortable="dateServices">Fecha y hora</th>
-                      <th class="col-auto" style="min-width: 120px;" sortable="value">Valor</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let item of paginatedData" style="width: 180px;">
-                        <td  width="180px" style="text-align: center;"><button type="button" style="border: none; background: transparent;"  (click)="editAppointment(item)" >
-                          <img src="assets/edit-24.png "/>
-                        </button>
-                      </td>
-                      <td style="text-align: center;">{{item.clientName}}</td>
-                        <td style="text-align: center;">{{item.petName}}</td>
-                        <td style="text-align: center;">{{item.serviceTypeDescription}}</td>
-                        <td style="text-align: center;">{{item.stateDescription}}</td>
-                        <td style="text-align: center;">{{item.dateService | date: 'yyyy-MM-dd'}} {{item.hourService}}</td>
-                        <td style="text-align: center;">${{item.value}}</td>                  
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="form-inline pull-right margin-bottom-basic" *ngIf="paginatedData.length > 0">
-                  <div class="form-group col-md-12 p-1">
-                      <div class="col-md-12">
-                        <label for="totalItems"><b>Total registros: {{dataSource.length}}</b></label>      
-                      
-                    </div>
-                  </div>
-    
-                    <div class="form-group items-per-page p-2">
-                    
-                        <label for="itemsOnPageSelect">Items por página:</label>
-                        <select id="itemsOnPageSelect" class="form-control input-sm" [value]="itemsPerPage" [(ngModel)]="itemsPerPage" (ngModelChange)="onValueChange($event)">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>25</option>
-                        </select>
-                    </div>
-                    <nav>
-                      <ul class="pagination justify-content-center">
-                        <li class="page-item" [class.disabled]="currentPage === 1">
-                          <button class="page-link"  (click)="changePage(currentPage - 1)">Anterior</button>
-                        </li>
-                        <li class="page-item" *ngFor="let page of totalPages" [class.active]="currentPage === page">
-                          <button class="page-link"  (click)="changePage(page)">{{ page }}</button>
-                        </li>
-                        <li class="page-item" [class.disabled]="currentPage === totalPages.length">
-                          <button class="page-link"  (click)="changePage(currentPage + 1)">Siguiente</button>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-            </div>
-        </div>
-        
+      </div>
     </div>
-    </div>
-        </div>
+  </div>
+</div>

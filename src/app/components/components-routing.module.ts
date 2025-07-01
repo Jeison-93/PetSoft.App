@@ -7,6 +7,7 @@ import { ClientBoardComponent } from './client.board/client.board.component';
 import { ServicesBoardComponent } from './services.board/services.board.component';
 import { ServicesCreateComponent } from './services.create/services.create.component';
 import { ServicesManagementComponent } from './services.management/services.management.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   { path: 'userBoard', component: UserBoardComponent },
@@ -15,8 +16,7 @@ const routes: Routes = [
   { path: 'servicesBoard', component: ServicesBoardComponent },
   { path: 'servicesCreate', component: ServicesCreateComponent },
   { path: 'servicesManagement', component: ServicesManagementComponent },
-
-
+  { path: 'report', component: ReportComponent },
 ];
 
 @NgModule({

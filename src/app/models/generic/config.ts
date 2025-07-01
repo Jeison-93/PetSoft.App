@@ -4,7 +4,7 @@ export class Config {
   urlApiUser: string = '';
   urlApiAuth: string = '';
   urlApiClient: string = '';
-  urlApiPet: string ="";
+  urlApiPet: string = '';
   urlApiAppointments: string = '';
-  } 
-  
+  urlApiReport: string = '';
+}

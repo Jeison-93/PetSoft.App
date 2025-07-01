@@ -22,11 +22,23 @@ import { PetCreateComponent } from './pet.create/pet.create.component';
 import { ServicesBoardComponent } from './services.board/services.board.component';
 import { ServicesCreateComponent } from './services.create/services.create.component';
 import { ServicesManagementComponent } from './services.management/services.management.component';
+import { ReportComponent } from './report/report.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
-  declarations: [UserCreateComponent, ClientCreateComponent, ClientBoardComponent, PetCreateComponent, ServicesBoardComponent, ServicesCreateComponent, ServicesManagementComponent],
+  declarations: [
+    UserCreateComponent,
+    ClientCreateComponent,
+    ClientBoardComponent,
+    PetCreateComponent,
+    ServicesBoardComponent,
+    ServicesCreateComponent,
+    ServicesManagementComponent,
+    ReportComponent,
+  ],
   imports: [
     CommonModule,
+
     ReactiveFormsModule,
     FormsModule,
     ComponentsRoutingModule,
@@ -44,6 +56,7 @@ import { ServicesManagementComponent } from './services.management/services.mana
     MatNativeDateModule,
     MatTimepickerModule,
     MatDatepickerModule,
+    ChartModule,
   ],
 })
 export class ComponentsModule {}

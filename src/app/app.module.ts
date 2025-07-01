@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTimepickerModule } from '@angular/material/timepicker';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [AppComponent, UserBoardComponent],
@@ -50,6 +52,8 @@ import { MatTimepickerModule } from '@angular/material/timepicker';
     MatTimepickerModule,
     MatDatepickerModule,
     HttpClientModule,
+    GoogleChartsModule,
+    NgApexchartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
