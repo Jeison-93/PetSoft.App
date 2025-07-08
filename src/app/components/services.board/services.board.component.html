@@ -98,58 +98,19 @@
                   text-align: center;
                 "
               >
-                <th sortable="edit">Acciones</th>
-                <th
-                  class="col-auto"
-                  style="min-width: 200px"
-                  sortable="petName"
-                >
-                  Cliente
-                </th>
-                <th
-                  class="col-auto"
-                  style="min-width: 100px"
-                  sortable="petName"
-                >
-                  Mascota
-                </th>
-                <th
-                  class="col-auto"
-                  style="min-width: 250px"
-                  sortable="serviceTypeDescription"
-                >
+                <th style="width: 1%" sortable="petName">Cliente</th>
+                <th style="width: 1%" sortable="petName">Mascota</th>
+                <th style="width: 1%" sortable="serviceTypeDescription">
                   Servicio
                 </th>
-                <th
-                  class="col-auto"
-                  style="min-width: 100px"
-                  sortable="stateDescription"
-                >
-                  Estado
-                </th>
-                <th
-                  class="col-auto"
-                  style="min-width: 200px"
-                  sortable="dateServices"
-                >
-                  Fecha y hora
-                </th>
-                <th class="col-auto" style="min-width: 120px" sortable="value">
-                  Valor
-                </th>
+                <th style="width: 1%" sortable="stateDescription">Estado</th>
+                <th style="width: 1%" sortable="dateServices">Fecha y hora</th>
+                <th style="width: 1%" sortable="value">Valor</th>
+                <th style="width: 1%" sortable="edit">Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of paginatedData" style="width: 180px">
-                <td width="180px" style="text-align: center">
-                  <button
-                    type="button"
-                    style="border: none; background: transparent"
-                    (click)="editAppointment(item)"
-                  >
-                    <img src="assets/edit-24.png " />
-                  </button>
-                </td>
                 <td style="text-align: center">{{ item.clientName }}</td>
                 <td style="text-align: center">{{ item.petName }}</td>
                 <td style="text-align: center">
@@ -161,6 +122,15 @@
                   {{ item.hourService }}
                 </td>
                 <td style="text-align: center">${{ item.value }}</td>
+                <td width="180px" style="text-align: center">
+                  <button
+                    type="button"
+                    style="border: none; background: transparent"
+                    (click)="editAppointment(item)"
+                  >
+                    <img src="assets/edit-24.png " />
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>

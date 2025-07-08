@@ -39,6 +39,9 @@ export class UserBoardComponent {
   currentPage: number = 1;
   paginatedData: any[] = [];
 
+  searchTerm: string = '';
+  filteredData: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -66,6 +69,7 @@ export class UserBoardComponent {
       this.role = this.dataSent.userTypeDescription;
       this.isAdmin = this.dataSent.userType == STORAGE_LS_ADMON;
     }
+    this.filteredData = this.paginatedData; // Inicializa con todos los datos
   }
 
   ngAfterViewInit() {
@@ -160,6 +164,8 @@ export class UserBoardComponent {
     const start = (this.currentPage - 1) * Number(this.itemsPerPage);
     const end = start + Number(this.itemsPerPage);
     this.paginatedData = this.dataSource.slice(start, end);
+    // Actualiza el filtro cada vez que se pagina
+    this.onSearchChange();
   }
 
   changePage(page: number) {
@@ -169,8 +175,6 @@ export class UserBoardComponent {
     }
   }
 
-  filteredData = [...this.paginatedData]; // Copia inicial de la lista
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value
       .toLowerCase()
@@ -179,6 +183,17 @@ export class UserBoardComponent {
       Object.values(pet).some((value) =>
         (value as string).toString().toLowerCase().includes(filterValue)
       )
+    );
+  }
+
+  onSearchChange() {
+    const term = this.searchTerm ? this.searchTerm.toLowerCase() : '';
+    this.filteredData = this.paginatedData.filter(
+      (item) =>
+        (item.name && item.name.toLowerCase().includes(term)) ||
+        (item.lastName && item.lastName.toLowerCase().includes(term)) ||
+        (item.documentNumber &&
+          item.documentNumber.toLowerCase().includes(term))
     );
   }
 

@@ -20,6 +20,32 @@
   <div class="row">
     <div class="col-md-12">
       <div>
+        <!-- Buscador -->
+        <div class="mb-4 d-flex justify-content-end">
+          <div class="input-group" style="max-width: 350px">
+            <span class="input-group-text bg-primary text-white border-0">
+              <i class="material-icons" style="font-size: 20px">search</i>
+            </span>
+            <input
+              type="text"
+              class="form-control border-0 shadow-none"
+              style="background: #f5f5f5"
+              placeholder="Buscar por nombre o identificación"
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="onSearchChange()"
+            />
+            <button
+              *ngIf="searchTerm"
+              class="btn btn-outline-secondary border-0"
+              style="background: #f5f5f5"
+              type="button"
+              (click)="searchTerm = ''; onSearchChange()"
+              matTooltip="Limpiar búsqueda"
+            >
+              <i class="material-icons" style="font-size: 18px">close</i>
+            </button>
+          </div>
+        </div>
         <table
           class="table table-sm table-responsive table-bordered table-striped table-hover"
           style="overflow: auto; height: 300px"
@@ -33,56 +59,18 @@
                 text-align: center;
               "
             >
-              <th *ngIf="isAdmin">Editar</th>
-              <th *ngIf="isAdmin">Cambiar Estado</th>
               <th class="col-auto" style="min-width: 250px">Nombre</th>
               <th class="col-auto" style="min-width: 250px">Identificación</th>
               <th class="col-auto" style="min-width: 250px">Tipo de usuario</th>
               <th class="col-auto" style="min-width: 250px">Email</th>
               <th class="col-auto" style="min-width: 150px">Teléfono</th>
               <th class="col-auto">Estado</th>
+              <th *ngIf="isAdmin">Editar</th>
+              <th *ngIf="isAdmin">Cambiar Estado</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of paginatedData" style="width: 180px">
-              <td *ngIf="isAdmin" width="180px" style="text-align: center">
-                <button
-                  type="button"
-                  matTooltip="Editar"
-                  style="border: none; background: transparent"
-                  (click)="editUser(item)"
-                >
-                  <img src="assets/edit-24.png " />
-                </button>
-              </td>
-              <td
-                *ngIf="isAdmin && item.state == '1'"
-                width="auto"
-                style="text-align: center"
-              >
-                <button
-                  type="button"
-                  style="border: none; background: transparent"
-                  matTooltip="Inactivar Usuario"
-                  (click)="changeState(item)"
-                >
-                  <img src="assets/addUser-24.png" />
-                </button>
-              </td>
-              <td
-                *ngIf="isAdmin && item.state == '0'"
-                width="auto"
-                style="text-align: center"
-              >
-                <button
-                  type="button"
-                  style="border: none; background: transparent"
-                  matTooltip="Activar Usuario"
-                  (click)="changeState(item)"
-                >
-                  <img src="assets/removeUser-24.png" />
-                </button>
-              </td>
+            <tr *ngFor="let item of filteredData">
               <td style="text-align: center">
                 {{ item.name }} {{ item.lastName }}
               </td>
@@ -93,6 +81,40 @@
               <td style="text-align: center">{{ item.email }}</td>
               <td style="text-align: center">{{ item.phone }}</td>
               <td style="text-align: center">{{ item.stateDescription }}</td>
+
+              <!-- Editar -->
+              <td *ngIf="isAdmin" width="180px" style="text-align: center">
+                <button
+                  type="button"
+                  matTooltip="Editar"
+                  style="border: none; background: transparent"
+                  (click)="editUser(item)"
+                >
+                  <img src="assets/edit-24.png" />
+                </button>
+              </td>
+
+              <!-- Cambiar estado: Activar o Inactivar -->
+              <td *ngIf="isAdmin" width="auto" style="text-align: center">
+                <button
+                  *ngIf="item.state == '1'"
+                  type="button"
+                  matTooltip="Inactivar Usuario"
+                  style="border: none; background: transparent"
+                  (click)="changeState(item)"
+                >
+                  <img src="assets/addUser-24.png" />
+                </button>
+                <button
+                  *ngIf="item.state == '0'"
+                  type="button"
+                  matTooltip="Activar Usuario"
+                  style="border: none; background: transparent"
+                  (click)="changeState(item)"
+                >
+                  <img src="assets/removeUser-24.png" />
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

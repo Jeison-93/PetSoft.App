@@ -20,6 +20,32 @@
   <div class="row">
     <div class="col-md-12">
       <div>
+        <!-- Buscador -->
+        <div class="mb-4 d-flex justify-content-end">
+          <div class="input-group" style="max-width: 350px">
+            <span class="input-group-text bg-primary text-white border-0">
+              <i class="material-icons" style="font-size: 20px">search</i>
+            </span>
+            <input
+              type="text"
+              class="form-control border-0 shadow-none"
+              style="background: #f5f5f5"
+              placeholder="Buscar por nombre o identificación"
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="onSearchChange()"
+            />
+            <button
+              *ngIf="searchTerm"
+              class="btn btn-outline-secondary border-0"
+              style="background: #f5f5f5"
+              type="button"
+              (click)="searchTerm = ''; onSearchChange()"
+              matTooltip="Limpiar búsqueda"
+            >
+              <i class="material-icons" style="font-size: 18px">close</i>
+            </button>
+          </div>
+        </div>
         <table
           class="table table-sm table-responsive table-bordered table-striped table-hover"
           style="overflow: auto; height: 300px"
@@ -33,56 +59,29 @@
                 text-align: center;
               "
             >
-              <th>Editar</th>
-              <th>Cambiar Estado</th>
-              <th class="col-auto">Mascotas</th>
-              <th class="col-auto" style="min-width: 350px">Nombre</th>
-              <th class="col-auto" style="min-width: 350px">Identificación</th>
+              <th class="col-auto" style="min-width: 300px">Nombre</th>
+              <th class="col-auto" style="min-width: 250px">Identificación</th>
               <th class="col-auto" style="min-width: 250px">Email</th>
               <th class="col-auto" style="min-width: 150px">Teléfono</th>
               <th class="col-auto">Estado</th>
+              <th>Editar</th>
+              <th>Cambiar Estado</th>
+              <th class="col-auto">Mascotas</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of paginatedData" style="width: 180px">
-              <td width="180px" style="text-align: center">
-                <button
-                  type="button"
-                  matTooltip="Editar"
-                  style="border: none; background: transparent"
-                  (click)="editClient(item)"
-                >
-                  <img src="assets/edit-24.png " />
-                </button>
+            <tr *ngFor="let item of filteredData" style="width: 180px">
+              <td style="text-align: center">
+                {{ item.name }} {{ item.lastName }}
               </td>
-              <td
-                *ngIf="item.state == '1'"
-                width="auto"
-                style="text-align: center"
-              >
-                <button
-                  type="button"
-                  style="border: none; background: transparent"
-                  matTooltip="Inactivar"
-                  (click)="changeState(item)"
-                >
-                  <img src="assets/addUser-24.png" />
-                </button>
+              <td style="text-align: center">
+                {{ item.documentType }} {{ item.documentNumber }}
               </td>
-              <td
-                *ngIf="item.state == '0'"
-                width="auto"
-                style="text-align: center"
-              >
-                <button
-                  type="button"
-                  style="border: none; background: transparent"
-                  matTooltip="Activar"
-                  (click)="changeState(item)"
-                >
-                  <img src="assets/removeUser-24.png" />
-                </button>
-              </td>
+              <td style="text-align: center">{{ item.email }}</td>
+              <td style="text-align: center">{{ item.phone }}</td>
+              <td style="text-align: center">{{ item.stateDescription }}</td>
+
+              <!-- Mascotas -->
               <td width="auto" style="text-align: center">
                 <button
                   type="button"
@@ -93,15 +92,40 @@
                   <img src="assets/pet-24.png" />
                 </button>
               </td>
-              <td style="text-align: center">
-                {{ item.name }} {{ item.lastName }}
+
+              <!-- Editar -->
+              <td width="180px" style="text-align: center">
+                <button
+                  type="button"
+                  matTooltip="Editar"
+                  style="border: none; background: transparent"
+                  (click)="editClient(item)"
+                >
+                  <img src="assets/edit-24.png" />
+                </button>
               </td>
-              <td style="text-align: center">
-                {{ item.documentType }} {{ item.documentNumber }}
+
+              <!-- Cambiar Estado -->
+              <td width="auto" style="text-align: center">
+                <button
+                  *ngIf="item.state == '1'"
+                  type="button"
+                  style="border: none; background: transparent"
+                  matTooltip="Inactivar"
+                  (click)="changeState(item)"
+                >
+                  <img src="assets/addUser-24.png" />
+                </button>
+                <button
+                  *ngIf="item.state == '0'"
+                  type="button"
+                  style="border: none; background: transparent"
+                  matTooltip="Activar"
+                  (click)="changeState(item)"
+                >
+                  <img src="assets/removeUser-24.png" />
+                </button>
               </td>
-              <td style="text-align: center">{{ item.email }}</td>
-              <td style="text-align: center">{{ item.phone }}</td>
-              <td style="text-align: center">{{ item.stateDescription }}</td>
             </tr>
           </tbody>
         </table>

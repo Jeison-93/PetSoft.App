@@ -40,6 +40,9 @@ export class ClientBoardComponent {
   currentPage: number = 1;
   paginatedData: any[] = [];
 
+  searchTerm: string = '';
+  filteredData: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -67,6 +70,7 @@ export class ClientBoardComponent {
       this.role = this.dataSent.userTypeDescription;
       this.isAdmin = this.dataSent.userType == STORAGE_LS_ADMON;
     }
+    this.filteredData = this.paginatedData; // Inicializa con todos los datos
   }
 
   ngAfterViewInit() {
@@ -185,6 +189,8 @@ export class ClientBoardComponent {
     const start = (this.currentPage - 1) * Number(this.itemsPerPage);
     const end = start + Number(this.itemsPerPage);
     this.paginatedData = this.dataSource.slice(start, end);
+    // Actualiza el filtro cada vez que se pagina
+    this.onSearchChange();
   }
 
   changePage(page: number) {
@@ -192,6 +198,17 @@ export class ClientBoardComponent {
       this.currentPage = page;
       this.updatePagination();
     }
+  }
+
+  onSearchChange() {
+    const term = this.searchTerm ? this.searchTerm.toLowerCase() : '';
+    this.filteredData = this.paginatedData.filter(
+      (item) =>
+        (item.name && item.name.toLowerCase().includes(term)) ||
+        (item.lastName && item.lastName.toLowerCase().includes(term)) ||
+        (item.documentNumber &&
+          item.documentNumber.toLowerCase().includes(term))
+    );
   }
 
   showSnackbar() {
