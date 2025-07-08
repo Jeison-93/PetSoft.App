@@ -73,6 +73,8 @@ export class ServicesBoardComponent implements OnInit {
     const value = event.value;
     this.pets = Object.assign([], []);
     this.dataSource = Object.assign([], []);
+    this.pets = Object.assign([], []);
+    this.dataSource = Object.assign([], []);
     this.updatePagination();
     this.petsServices.GetAllPets(value).subscribe((res) => {
       if (res.isSuccessful) {

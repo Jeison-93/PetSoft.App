@@ -25,6 +25,7 @@ export class MenuComponent implements OnInit {
   name: string = '';
   role: string = '';
   isAdmin: boolean = true;
+  imageUrl: string = 'assets/user-100.png';
 
   constructor(
     private observer: BreakpointObserver,
@@ -64,5 +65,17 @@ export class MenuComponent implements OnInit {
     this.authServices.clearToken(SESSION_LS_NAME);
     this.authServices.clearToken(STORAGE_LS_USER);
     this.router.navigateByUrl('');
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.imageUrl = URL.createObjectURL(file);
+      const img = new Image();
+      img.src = this.imageUrl;
+      img.onload = () => {
+        URL.revokeObjectURL(this.imageUrl);
+      };
+    }
   }
 }

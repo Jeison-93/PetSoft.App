@@ -5,9 +5,9 @@
         
         <mat-form-field class="full-width" *ngIf="!data.isEdit">
             <mat-label>Clientes</mat-label>
-            <mat-select formControlName="client" (selectionChange)="onClientChange($event)">
-              <mat-option *ngFor="let item of clients" [value]="item.code" >
-                {{ item.description }}
+            <mat-select formControlName="client" >
+              <mat-option *ngFor="let item of clients" [value]="item.id" >
+                {{ item.documentNumber }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -15,8 +15,8 @@
         <mat-form-field class="full-width" *ngIf="!data.isEdit">
             <mat-label>Mascotas</mat-label>
             <mat-select formControlName="idpet">
-              <mat-option *ngFor="let item of pets" [value]="item.id">
-                {{ item.name }}
+              <mat-option *ngFor="let item of pets" [value]="item.code">
+                {{ item.description }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -39,7 +39,7 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="full-width">
+              <mat-form-field class="full-width">
                 <mat-label>Fecha</mat-label>
                 <input matInput [matDatepicker]="datepicker" formControlName="dateService" >
                 <mat-datepicker #datepicker/>
@@ -48,8 +48,7 @@
               
               <mat-form-field class="full-width">
                 <mat-label>Hora</mat-label>
-                <input type="time" matInput
-                  formControlName="hourService" >
+                <input matInput [matTimepicker]="timepicker" formControlName="hourService" >
                 <mat-timepicker #timepicker/>
                 <mat-timepicker-toggle [for]="timepicker" matSuffix/>
               </mat-form-field>
