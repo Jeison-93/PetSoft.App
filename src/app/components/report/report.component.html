@@ -1,0 +1,75 @@
+<div class="position-relative p-2 ms-2">
+  <h2>Reporte de servicios</h2>
+
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Fecha Inicial</mat-label>
+      <input
+        matInput
+        [matDatepicker]="initialdatepicker"
+        formControlName="startDate"
+      />
+      <mat-datepicker #initialdatepicker />
+      <mat-datepicker-toggle [for]="initialdatepicker" matSuffix />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Fecha Final</mat-label>
+      <input
+        matInput
+        [matDatepicker]="finaldatepicker"
+        formControlName="endDate"
+      />
+      <mat-datepicker #finaldatepicker />
+      <mat-datepicker-toggle [for]="finaldatepicker" matSuffix />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Servicio</mat-label>
+      <mat-select formControlName="serviceType">
+        <mat-option *ngFor="let item of servicesType" [value]="item.code">
+          {{ item.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="state">
+        <mat-option *ngFor="let item of servicesState" [value]="item.code">
+          {{ item.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-group p-2">
+      <div class="row justify-content-center">
+        <div class="button-container" style="margin: 5px">
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn btn-primary"
+            [disabled]="form.invalid"
+            (click)="search()"
+          >
+            Buscar
+          </button>
+        </div>
+        <div class="button-container" style="margin: 5px">
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn btn-primary"
+            (click)="ResetValues()"
+          >
+            Llimpiar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- BOTONES -->
+
+  <!-- highcharts.component.html -->
+  <div [chart]="chart" title="Reporte de servicios"></div>
+</div>

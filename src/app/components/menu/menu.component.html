@@ -1,1 +1,118 @@
-<p>menu works!</p>
+<mat-toolbar>
+  <button mat-icon-button style="color: white" (click)="sidenav.toggle()">
+    <mat-icon> menu </mat-icon>
+  </button>
+  <span>PetSoft</span>
+  <span class="mat-logout"></span>
+  <button mat-button style="color: white" (click)="logOut()">
+    <mat-icon>logout</mat-icon>
+    <span>Salir</span>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav
+    class="mat-elevation-z8"
+    #sidenav="matSidenav"
+    mode="side"
+    opened
+  >
+    <div
+      style="
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 16px;
+      "
+    >
+      <img
+        class="avatar mat-elevation-z8"
+        [src]="imageUrl"
+        alt=""
+        id="avatar"
+        style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover"
+      />
+      <button
+        type="button"
+        style="
+          position: absolute;
+          bottom: 8px;
+          right: 16px;
+          background: #fff;
+          border-radius: 50%;
+          border: none;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+          padding: 4px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+        (click)="imageFileInput.click()"
+        aria-label="Cambiar foto de perfil"
+      >
+        <!-- SVG icono de cámara -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M20 5h-3.17l-1.84-2.47A2 2 0 0 0 13.42 2h-2.84a2 2 0 0 0-1.57.53L7.17 5H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 15H4V7h4.05l1.83-2.46c.09-.12.23-.19.37-.19h2.5c.14 0 .28.07.37.19L15.95 7H20v13zm-8-3a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"
+            fill="#1976d2"
+          />
+        </svg>
+      </button>
+      <input
+        #imageFileInput
+        type="file"
+        id="imageFile"
+        name="filename"
+        (change)="onFileSelected($event)"
+        accept=".png, .jpg, .jpeg"
+        style="display: none"
+      />
+      <h4 class="name" style="margin: 12px 0 0 0">{{ name }}</h4>
+      <p class="designation" style="margin: 0 0 8px 0">{{ role }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <span>Perfiles</span>
+
+    <button mat-button class="menu-button" *ngIf="isAdmin">
+      <img src="assets/user-24.png " />
+      <span><a [routerLink]="['menulist/userBoard']"> Usuarios</a></span>
+    </button>
+    <button mat-button class="menu-button">
+      <img src="assets/client-24.png " />
+      <span><a [routerLink]="['menulist/clientBoard']"> Clientes</a></span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <span>Servicios</span>
+
+    <button mat-button class="menu-button">
+      <img src="assets/calendar-24.png " />
+      <span><a [routerLink]="['menulist/servicesBoard']"> Administrar</a></span>
+    </button>
+
+    <button mat-button class="menu-button">
+      <img src="assets/evento-24.png " />
+      <span><a [routerLink]="['menulist/servicesManagement']"> Citas</a></span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <span *ngIf="isAdmin">Reportes</span>
+
+    <button mat-button class="menu-button" *ngIf="isAdmin">
+      <img src="assets/report_icon24.png " />
+      <span><a [routerLink]="['menulist/report']"> Reportes </a></span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

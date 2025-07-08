@@ -1,0 +1,10 @@
+{
+  "urlApiBase": "https://localhost:7299/",
+  "urlApiGeneric": "https://localhost:7299/api/GenericTable/",
+  "urlApiAuth": "https://localhost:7299/api/UserAuth/",
+  "urlApiUser": "https://localhost:7299/api/User/",
+  "urlApiClient": "https://localhost:7299/api/Client/",
+  "urlApiPet": "https://localhost:7299/api/Pet/",
+  "urlApiAppointments": "https://localhost:7299/api/Appointments/",
+  "urlApiReport": "https://localhost:7299/api/Report/"
+}
